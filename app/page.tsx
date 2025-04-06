@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import Image from "next/image";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -45,6 +46,9 @@ const formSchema = z.object({
 });
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -58,6 +62,8 @@ export default function Home() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    setShowSuccess(true);
+    setLoading(true);
   }
   return (
     <main>
@@ -164,11 +170,23 @@ export default function Home() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full bg-[#F44363]">
-                    Submit
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#F44363]"
+                    disabled={loading}
+                  >
+                    Unlock the Experience
                   </Button>
                 </form>
               </Form>
+              {showSuccess && (
+                <div className="flex items-center gap-1.5">
+                  <Image src="/check.svg" alt="check" width={32} height={32} />
+                  <p className="text-base text-[#5C5C5C] font-medium">
+                    You&apos;re in! We are excited to have you onboard
+                  </p>
+                </div>
+              )}
             </div>
           </DialogContent>
         </DialogOverlay>
