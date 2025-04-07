@@ -64,6 +64,13 @@ export default function Home() {
     console.log(values);
     setShowSuccess(true);
     setLoading(true);
+
+      // Reset the form to default values
+  form.reset({
+    email: "",
+    phone: "",
+    description: "Select",
+  });
   }
   return (
     <main>
@@ -145,12 +152,12 @@ export default function Home() {
                         </FormLabel>
                         <FormControl>
                           <Select
+                            value={field.value}
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
                           >
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Choose" />
+                                <SelectValue placeholder="Select" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
