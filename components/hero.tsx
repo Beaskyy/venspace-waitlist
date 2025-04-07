@@ -3,7 +3,6 @@
 import { slides } from "@/lib/data";
 import { useState, useEffect } from "react";
 import { Search } from "./search";
-import { MobileSearch } from "./mobile-search";
 import { Header } from "./header";
 
 export const Hero = () => {
@@ -23,9 +22,7 @@ export const Hero = () => {
       <div className="md:flex hidden absolute z-50 top-[470px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
         <Search />
       </div>
-      {/* <div className="md:hidden flex absolute z-50 top-[400px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
-        <MobileSearch />
-      </div> */}
+   
       {/* Slides */}
       <div className="relative w-full h-full">
         {slides.map((slide, index) => (
